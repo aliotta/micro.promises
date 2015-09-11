@@ -15,6 +15,31 @@ var Promise = require('bluebird');
 
 var promiseDotAll = function (arrayOfPromises) {
   // YOUR CODE HERE
+  var returnValues = []
+
+  var err = null
+  var i = 0;
+  var promiseTraversal = function(cb) {
+    if (i === arrayOfPromises.length) {
+      cb(null, returnValues)
+      return
+    }
+    arrayOfPromises[i].then(function(value) {
+      console.log("VALUE")
+      console.log(value)
+      returnValues.push(value);
+      i++;
+      promiseTraversal(cb);
+    }).catch(function(error) {
+      err = error;
+      cb(error, null)
+    })
+  }
+  var promisifiedPromiseTraversal = Promise.promisify(promiseTraversal);
+  return promisifiedPromiseTraversal;
+  return new Promise(function(resolve, reject){
+    promisifiedPromiseTraversal()
+  })
 };
 
 module.exports = promiseDotAll;

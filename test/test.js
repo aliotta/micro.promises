@@ -37,36 +37,36 @@ describe('Bare Minimum -', function() {
     });
   });
 
-  describe('getStatusCodeWithPromisify.js', function () {
-    var getStatusCodeWithPromisify = require('../src/getStatusCodeWithPromisify.js');
+  // describe('getStatusCodeWithPromisify.js', function () {
+  //   var getStatusCodeWithPromisify = require('../src/getStatusCodeWithPromisify.js');
 
-    it('should return a promise', function () {
-      var url = 'https://google.com';
+  //   it('should return a promise', function () {
+  //     var url = 'https://google.com';
 
-      // must return a Bluebird promise. ES6 promise won't work here
-      expect(getStatusCodeWithPromisify(url)).to.be.an.instanceOf(Promise);
-    });
+  //     // must return a Bluebird promise. ES6 promise won't work here
+  //     expect(getStatusCodeWithPromisify(url)).to.be.an.instanceOf(Promise);
+  //   });
 
-    it('should make the status code available in the `then` block', function (done) {
-      var url = 'https://google.com';
+  //   it('should make the status code available in the `then` block', function (done) {
+  //     var url = 'https://google.com';
 
-      getStatusCodeWithPromisify(url)
-        .then(function (statusCode) {
-          expect(statusCode).to.equal(200);
-          done();
-        });
-    });
+  //     getStatusCodeWithPromisify(url)
+  //       .then(function (statusCode) {
+  //         expect(statusCode).to.equal(200);
+  //         done();
+  //       });
+  //   });
 
-    it('should make any errors available in the `catch` block', function (done) {
-      var url = 'https::///thisIsNoUrl.comedy';
+  //   it('should make any errors available in the `catch` block', function (done) {
+  //     var url = 'https::///thisIsNoUrl.comedy';
 
-      getStatusCodeWithPromisify(url)
-        .catch(function (err) {
-          expect(err).to.exist;
-          done();
-        });
-    });
-  });
+  //     getStatusCodeWithPromisify(url)
+  //       .catch(function (err) {
+  //         expect(err).to.exist;
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('readfileWithPromise.js', function () {
     var readFileWithPromise = require('../src/readFileWithPromise.js');
@@ -100,36 +100,36 @@ describe('Bare Minimum -', function() {
     });
   });
 
-  describe('getStatusCodeWithPromise.js', function () {
-    var getStatusCodeWithPromise = require('../src/getStatusCodeWithPromise.js');
+  // describe('getStatusCodeWithPromise.js', function () {
+  //   var getStatusCodeWithPromise = require('../src/getStatusCodeWithPromise.js');
 
-    it('should return a promise', function () {
-      var url = 'https://google.com';
+  //   it('should return a promise', function () {
+  //     var url = 'https://google.com';
 
-      // must return a Bluebird promise. ES6 promise won't work here
-      expect(getStatusCodeWithPromise(url)).to.be.an.instanceOf(Promise);
-    });
+  //     // must return a Bluebird promise. ES6 promise won't work here
+  //     expect(getStatusCodeWithPromise(url)).to.be.an.instanceOf(Promise);
+  //   });
 
-    it('should make the status code available in the `then` block', function (done) {
-      var url = 'https://google.com';
+  //   it('should make the status code available in the `then` block', function (done) {
+  //     var url = 'https://google.com';
 
-      getStatusCodeWithPromise(url)
-        .then(function (statusCode) {
-          expect(statusCode).to.equal(200);
-          done();
-        });
-    });
+  //     getStatusCodeWithPromise(url)
+  //       .then(function (statusCode) {
+  //         expect(statusCode).to.equal(200);
+  //         done();
+  //       });
+  //   });
 
-    it('should make any errors available in the `catch` block', function (done) {
-      var url = 'https::///thisIsNoUrl.comedy';
+  //   it('should make any errors available in the `catch` block', function (done) {
+  //     var url = 'https::///thisIsNoUrl.comedy';
 
-      getStatusCodeWithPromise(url)
-        .catch(function (err) {
-          expect(err).to.exist;
-          done();
-        });
-    });
-  });
+  //     getStatusCodeWithPromise(url)
+  //       .catch(function (err) {
+  //         expect(err).to.exist;
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('pluckFirstLineFromFile.js', function () {
     var pluckFirstLine = require('../src/pluckFirstLineFromFile.js');
@@ -156,7 +156,7 @@ describe('Bare Minimum -', function() {
     });
   });
 
-  describe('getFromAPIAndWriteToFile.js', function () {
+  xdescribe('getFromAPIAndWriteToFile.js', function () {
 
     var filePath = __dirname + '/../lib/file_to_write_to';
     var apiURL = 'https://api.github.com/zen';
@@ -245,16 +245,17 @@ describe('Bare Minimum -', function() {
 
 describe('Advanced Content -', function () {
 
-  xdescribe('putItAllTogether.js', function () {
+  describe('putItAllTogether.js', function () {
     var putItAllTogether = require('../src/putItAllTogether.js');
     var lib = require('../lib/putItAllTogetherHelpers');
 
-    it('should return a promise', function () {
+    xit('should return a promise', function () {
       // Must return a Bluebird promise. ES6 promise won't work here
       expect(putItAllTogether(['danthareja'])).to.be.an.instanceOf(Promise);
+      
     });
 
-    it('should resolve to an array of tags', function (done) {
+    xit('should resolve to an array of tags', function (done) {
       this.timeout(5000);
       putItAllTogether(['danthareja'])
         .then(function(tags) {
@@ -263,16 +264,17 @@ describe('Advanced Content -', function () {
         });
     });
 
-    it('should have adjectives in an array of tags', function (done) {
+    xit('should have adjectives in an array of tags', function (done) {
       this.timeout(5000);
       putItAllTogether(['danthareja'])
         .then(function(tags) {
+          console.log(tags);
           expect(tags).to.contain('men');
           done();
         });
     });
 
-    it('should not have duplicate adjectives in the array of tags', function (done) {
+    xit('should not have duplicate adjectives in the array of tags', function (done) {
       this.timeout(5000);
       putItAllTogether(['danthareja', 'bethjohnson'])
         .then(function(tags) {
@@ -288,7 +290,7 @@ describe('Advanced Content -', function () {
         });
     });
 
-    it('should contain the correct tags', function (done) {
+    xit('should contain the correct tags', function (done) {
       this.timeout(5000);
       putItAllTogether(['danthareja', 'sunny-g'])
         .then(function(tags) {
@@ -296,9 +298,8 @@ describe('Advanced Content -', function () {
           done();
         });
     });
-  });
 
-  xdescribe('writeYourOwnPromisify.js', function () {
+  describe('writeYourOwnPromisify.js', function () {
     var promisify = require('../src/writeYourOwnPromisify.js');
 
     it('should return a promise-aware function', function () {
@@ -329,7 +330,7 @@ describe('Advanced Content -', function () {
     });
   });
 
-  xdescribe('writeYourOwnPromiseDotAll.js', function () {
+  describe('writeYourOwnPromiseDotAll.js', function () {
     var promiseDotAll = require('../src/writeYourOwnPromiseDotAll.js');
 
     it('should return a promise', function () {
@@ -345,6 +346,8 @@ describe('Advanced Content -', function () {
 
       promiseDotAll(arrayOfPromises)
         .then(function (values) {
+          console.log("ACTUAL VALUES")
+          console.log(values)
           expect(values).to.be.an.instanceOf(Array);
           done();
         });
@@ -379,58 +382,58 @@ describe('Advanced Content -', function () {
     });
   });
 
-  xdescribe('writeYourOwnPromiseDotRace.js', function () {
-    var promiseDotRace = require('../src/writeYourOwnPromiseDotRace.js');
+  // describe('writeYourOwnPromiseDotRace.js', function () {
+  //   var promiseDotRace = require('../src/writeYourOwnPromiseDotRace.js');
 
-    it('should return a promise', function () {
-      // delay comes from lib/asyncLib.js
-      var arrayOfPromises = ['a','b','c'].map(delay);
+  //   it('should return a promise', function () {
+  //     // delay comes from lib/asyncLib.js
+  //     var arrayOfPromises = ['a','b','c'].map(delay);
 
-      // Must return a Bluebird promise. ES6 promise won't work here
-      expect(promiseDotRace(arrayOfPromises)).to.be.an.instanceOf(Promise);
-    });
+  //     // Must return a Bluebird promise. ES6 promise won't work here
+  //     expect(promiseDotRace(arrayOfPromises)).to.be.an.instanceOf(Promise);
+  //   });
 
-    it('should resolve with a single value', function (done) {
-      var arrayOfPromises = [
-        delay(25, 'a'), // will fulfill to 'a' after 25ms
-        delay(10, 'b'), // will fulfill to 'b' after 10ms
-        delay(50, 'c'), // will fulfill to 'c' after 50ms
-      ];
+  //   it('should resolve with a single value', function (done) {
+  //     var arrayOfPromises = [
+  //       delay(25, 'a'), // will fulfill to 'a' after 25ms
+  //       delay(10, 'b'), // will fulfill to 'b' after 10ms
+  //       delay(50, 'c'), // will fulfill to 'c' after 50ms
+  //     ];
 
-      promiseDotRace(arrayOfPromises)
-        .then(function (value) {
-          expect(value).to.be.a.String;
-          done();
-        });
-    });
+  //     promiseDotRace(arrayOfPromises)
+  //       .then(function (value) {
+  //         expect(value).to.be.a.String;
+  //         done();
+  //       });
+  //   });
 
-    it('should fulfill with the value if the first resolved promise is fulfulled', function (done) {
-      var arrayOfPromises = [
-        delay(25, 'a'), // will fulfill to 'a' after 25ms
-        delay(10, 'b'), // will fulfill to 'b' after 10ms
-        delay(50, 'c'), // will fulfill to 'c' after 50ms
-      ];
+  //   it('should fulfill with the value if the first resolved promise is fulfulled', function (done) {
+  //     var arrayOfPromises = [
+  //       delay(25, 'a'), // will fulfill to 'a' after 25ms
+  //       delay(10, 'b'), // will fulfill to 'b' after 10ms
+  //       delay(50, 'c'), // will fulfill to 'c' after 50ms
+  //     ];
 
-      promiseDotRace(arrayOfPromises)
-        .then(function (value) {
-          expect(value).to.equal('b');
-          done();
-        });
-    });
+  //     promiseDotRace(arrayOfPromises)
+  //       .then(function (value) {
+  //         expect(value).to.equal('b');
+  //         done();
+  //       });
+  //   });
 
-    it('should reject with the error if the first resolved promise is rejected', function (done) {
-      var arrayOfPromises = [
-        delay(25, 'a'), // will fulfill to 'a' after 25ms
-        delay(10, 'b'), // will fulfill to 'b' after 10ms
-        delay(10001, 'c'), // will reject immediately
-      ];
+  //   it('should reject with the error if the first resolved promise is rejected', function (done) {
+  //     var arrayOfPromises = [
+  //       delay(25, 'a'), // will fulfill to 'a' after 25ms
+  //       delay(10, 'b'), // will fulfill to 'b' after 10ms
+  //       delay(10001, 'c'), // will reject immediately
+  //     ];
 
-      promiseDotRace(arrayOfPromises)
-        .catch(function (err) {
-          expect(err.message).to.equal('Delay for value c is too long');
-          done();
-        });
-    });
+  //     promiseDotRace(arrayOfPromises)
+  //       .catch(function (err) {
+  //         expect(err.message).to.equal('Delay for value c is too long');
+  //         done();
+  //       });
+  //   });
   });
 
 });

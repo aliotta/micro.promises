@@ -17,7 +17,17 @@ fs.readFile(filePath, function (err, content) {
 // in the `then` block chained onto a `readFileWithPromise` invocation, and any errors during fs.readFile
 // will be available in the `catch` block
 var readFileWithPromise = function (filePath) {
-  // YOUR CODE HERE
+  return new Promise(function(resolve, reject){
+    fs.readFile(filePath, function (err, content) {
+      // consle.log(content.toString())
+      if (err) { 
+        reject(err)
+      } 
+      else {
+        resolve(content);
+      }
+    });
+  })
 };
 
 module.exports = readFileWithPromise;

@@ -1,5 +1,6 @@
 var Promise = require('bluebird');
 var lib = require('../lib/putItAllTogetherHelpers.js');
+var _ = require('underscore');
 
 /**
  *
@@ -50,10 +51,34 @@ var lib = require('../lib/putItAllTogetherHelpers.js');
 // Visit the following url to sign up for a free account
 //     https://developer.clarifai.com/accounts/login/?next=/applications/
 // Then, create a new Application and pass your Client Id and Client Secret into the method below
-lib.setImageTaggerCredentials('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET')
+lib.setImageTaggerCredentials('wHUgiWuzs93sGnz9ZXZtrO72ayw21THaLyGYuVWN', 'ZtKT5a7hsDw8oN3cgRSXs6FdOSFErDCCHRQdmNSw')
 
 var putItAllTogether = function(githubHandles) {
-lib.setImageTaggerCredentials('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET')
+  lib.setImageTaggerCredentials('wHUgiWuzs93sGnz9ZXZtrO72ayw21THaLyGYuVWN', 'ZtKT5a7hsDw8oN3cgRSXs6FdOSFErDCCHRQdmNSw')
+ 
+  return Promise.all([lib.authenticateImageTagger(), Promise.map(githubHandles, lib.getGitHubProfile)])
+  .then(function(values) {
+    token = values[0]
+    profiles = values[1]
+    images = []
+    for (var i = 0; i < profiles.length; i++) {
+      images.push(profiles[i].avatarUrl)
+    };
+    return lib.tagImage(images, token);
+  })
+  .then(function(tagArrays) {
+    return _.uniq(_.flatten(tagArrays))
+  })
+
+  // .then( function(profiles){
+  //   var output = ['men'];
+  //   console.log("Profiels: ", profiles)
+
+  //   lib.tagImage(profiles.avatarUrl, )
+  //   return output;
+  // }) 
+   
+ 
 };
 
 module.exports = putItAllTogether;
